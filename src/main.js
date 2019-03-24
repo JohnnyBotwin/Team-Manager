@@ -1,8 +1,29 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+// Window Scopes
+import PouchDB from 'pouchdb';
+import PouchdbFind from 'pouchdb-find';
+
+window.PouchDB = PouchDB;
+window.PouchDB.plugin(PouchdbFind);
+
+window.md5 = require('md5');
+
+// Vue and foreign components
+import Vue from 'vue';
+import router from './router';
+
+// Main layout files
+import App from './components/layouts/App';
+import Backoffice from './components/layouts/Backoffice';
+
+
+// Mixins and helpers
+import {
+	database,
+	users,
+	teams,
+  	userTeams
+} from './integrations/database';
+
 
 Vue.config.productionTip = false
 
@@ -11,5 +32,14 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
-})
+  template: '<App/>',
+  created() {
+
+  },
+  mixins : [
+  	database, 
+  	users,
+  	teams,
+  	userTeams
+  ]
+});
