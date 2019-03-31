@@ -10,7 +10,9 @@ const database = {
 		return {
 
 			sources : {
+
 				remote : 'http://127.0.0.1:5984',
+				// remote : 'http://188.166.26.132:8976'
 				local  : null,
 			},
 			dbconn : {
@@ -53,6 +55,13 @@ const database = {
 					me.$root.dbconn.local = new PouchDB(namespace);
 
 					me.$root.database().sync();
+
+					return {
+
+						local  : me.$root.dbconn.local,
+						remote : me.$root.dbconn.remote
+
+					};
 
 				},
 
@@ -667,8 +676,151 @@ const tasks = {
 
 
 
+const userRoles = {
+
+	methods: {
+
+		userRoles() {
+
+			let me = this;
+
+			me.$root.db('user_roles').connect();
+
+			return {
+
+				assign(email, roleName, respCallback, failCallback) {
+
+					let relation = {
+						_id : md5(email + roleName),
+						user: email,
+						role: md5(roleName)
+					};
+
+					me.$root.database().create(relation, respCallback, failCallback);
+
+				},
+
+				unassign(email, roleName, respCallback, failCallback) {
+
+					let _id = md5(email + roleName);
+
+					me.$root.database().delete(_id, respCallback, failCallback);
+
+				},
+
+				userRoles(email, respCallback, failCallback) {
+
+					me.$root.database().find({
+						selector: { user : email },
+					}, respCallback, failCallback);
+
+				},
+
+			};
+
+		}
+
+	}
+
+};
 
 
+const projectRoles = {
+
+	methods: {
+
+		projectRoles() {
+
+			let me = this;
+
+			me.$root.db('project_roles').connect();
+
+			return {
+
+				assign(projectName, roleName, respCallback, failCallback) {
+
+					let relation = {
+						_id : md5(projectName + roleName),
+						project: md5(projectName),
+						role: md5(roleName)
+					};
+
+					me.$root.database().create(relation, respCallback, failCallback);
+
+				},
+
+				unassign(projectName, roleName, respCallback, failCallback) {
+
+					let _id = md5(projectName + roleName);
+
+					me.$root.database().delete(_id, respCallback, failCallback);
+
+				},
+
+				projectRoles(projectName, respCallback, failCallback) {
+
+					me.$root.database().find({
+						selector: { project : md5(projectName) },
+					}, respCallback, failCallback);
+
+				},
+
+			};
+
+		}
+
+	}
+
+};
+
+
+const teamTraining = {
+
+	methods: {
+
+		teamTraining() {
+
+			let me = this;
+
+			me.$root.db('team_training').connect();
+
+			return {
+
+				assign(teamName, training, respCallback, failCallback) {
+
+					let relation = {
+						_id : md5(teamName + training),
+						team: md5(teamName),
+						training: md5(training)
+					};
+
+					me.$root.database().create(relation, respCallback, failCallback);
+
+				},
+
+				unassign(teamName, training, respCallback, failCallback) {
+
+					let _id = md5(teamName + training);
+
+					me.$root.database().delete(_id, respCallback, failCallback);
+
+				},
+
+				teamTraining(teamName, respCallback, failCallback) {
+
+					me.$root.database().find({
+						selector: { team : md5(teamName) },
+					}, respCallback, failCallback);
+
+				},
+
+			};
+
+		}
+
+	}
+
+};
 
 
 
@@ -678,4 +830,12 @@ export {
 	users,
 	teams,
 	userTeams,
+	trainings,
+	schedules,
+	projects,
+	roles,
+	tasks,
+	userRoles,
+	projectRoles,
+	teamTraining,
 }

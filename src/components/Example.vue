@@ -16,11 +16,35 @@
 
 		created() {
 
-			this.howToGetUserTeams();
-
+			this.howToGetUser();
+			this.howToGetAllUsers();
+			
 		},
 
 		methods : {
+
+			howToRandom() {
+
+				let me = this;
+
+				me.$root.roles().createRole({
+
+					name : 'Developer',
+					title : 'Developer',
+					short_title : 'Dev',
+
+				}, function(response) {
+
+					console.log(response);
+
+				}, function(error) {
+
+					console.log(error);
+
+				});
+
+
+			},
 
 
 			howToCreateUser() {
