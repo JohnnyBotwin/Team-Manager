@@ -12,18 +12,49 @@ import Home from '@/components/app/Home';
 
 // Backoffice components
 import Dashboard from '@/components/backoffice/Dashboard';
+import Backoffice from '@/components/layouts/Backoffice';
+import CreateUser from '@/components/backoffice/users/Create';
+import ListUsers from '@/components/backoffice/users/List';
+
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-  
-    { path: '/', name: 'Login', component: Login },
 
-    
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
+    },
 
-    { path : '/example', name: 'Example', component: Example }
+
+
+    {
+      path: '/example',
+      name: 'Example',
+      component: Example
+    },
+
+    {
+      path: "/backoffice/",
+      name: "Backoffice",
+      component: Backoffice,
+      children: [
+        {
+          path: "users/create",
+          name: "CreateUser",
+          component: CreateUser
+        },
+
+        {
+          path: "users/list",
+          name: "ListUsers",
+          component: ListUsers
+        },
+      ]
+    }
 
   ]
 })
