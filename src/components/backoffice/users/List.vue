@@ -1,10 +1,13 @@
 <template>
-  <div>user list</div>
+  <div>user list should be able to delete</div>
 </template>
 
 <script>
 export default {
   name: "user-list",
+  mounted() {
+    this.getUsers();
+  },
   methods: {
     getUsers() {
       let me = this;
