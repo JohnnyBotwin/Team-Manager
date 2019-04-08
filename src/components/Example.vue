@@ -16,8 +16,23 @@
 
 		created() {
 
-			this.howToGetUser();
-			this.howToGetAllUsers();
+			let me = this;
+			console.log("calling trainings");
+				
+				me.$root.trainings().getTrainings(function(response) {
+
+					console.log(response);
+
+				}, function(error) {
+
+					console.log(error);
+
+				});
+
+
+
+			// this.howToGetUser();
+			// this.howToGetAllUsers();
 			
 		},
 
