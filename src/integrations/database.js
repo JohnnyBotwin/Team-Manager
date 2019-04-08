@@ -12,7 +12,7 @@ const database = {
 			sources : {
 
 				// remote : 'http://127.0.0.1:5984',
-				remote : 'http://188.166.26.132:8976'
+				remote : 'http://188.166.26.132:8976',
 				local  : null,
 			},
 			dbconn : {
