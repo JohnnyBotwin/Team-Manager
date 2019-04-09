@@ -18,6 +18,7 @@ import Backoffice from '@/components/layouts/Backoffice';
 import CreateUser from '@/components/backoffice/users/Create';
 import ListUsers from '@/components/backoffice/users/List';
 import ListProject from '@/components/backoffice/projects/List';
+import CreateProject from '@/components/backoffice/projects/Create';
 
 
 
@@ -54,6 +55,11 @@ export default new Router({
           path: "project/list",
           name: "ListProject",
           component: ListProject
+        },
+        {
+          path: "project/create",
+          name: "CreateProject",
+          component: CreateProject
         },
         {
           path: 'training/list',
