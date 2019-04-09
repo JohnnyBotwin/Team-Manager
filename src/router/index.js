@@ -14,23 +14,57 @@ import Home from '@/components/app/Home';
 import Dashboard from '@/components/backoffice/Dashboard';
 import BOListTraining from '@/components/backoffice/training/List';
 import BOCreateTraining from '@/components/backoffice/training/Create';
+import Backoffice from '@/components/layouts/Backoffice';
+import CreateUser from '@/components/backoffice/users/Create';
+import ListUsers from '@/components/backoffice/users/List';
+import ListProject from '@/components/backoffice/projects/List';
+
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', name: 'Login', component: Login },
     {
-      path: '/bo', component: Dashboard,
-      children: [{
-        path: '/bo/training/list',
-        component: BOListTraining
-      },
-      {
-        path: '/bo/training/create',
-        component: BOCreateTraining
-      }]
+      path: '/',
+      name: 'Login',
+      component: Login
     },
+    {
+      path: "/backoffice/",
+      name: "Backoffice",
+      component: Backoffice,
+      children: [
+        {
+          path: '',
+          component: Dashboard
+        },
+        {
+          path: "users/create",
+          name: "CreateUser",
+          component: CreateUser
+        },
+
+        {
+          path: "users/list",
+          name: "ListUsers",
+          component: ListUsers
+        },
+        {
+          path: "project/list",
+          name: "ListProject",
+          component: ListProject
+        },
+        {
+          path: 'training/list',
+          component: BOListTraining
+        },
+        {
+          path: 'training/create',
+          component: BOCreateTraining
+        }
+      ]
+    },
+
   ]
 })

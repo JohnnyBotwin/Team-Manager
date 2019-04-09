@@ -1,6 +1,6 @@
 <template>
   <div id="backoffice">
-    
+    <router-link to="/backoffice">Dashboard</router-link>
     <router-view/>
     
   </div>

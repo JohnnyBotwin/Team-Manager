@@ -52,13 +52,13 @@ const database = {
 
 					me.$root.dbconn.remote = new PouchDB(me.sources.remote + '/' + namespace);
 
-					me.$root.dbconn.local = new PouchDB(namespace);
+					// me.$root.dbconn.local = new PouchDB(namespace);
 
-					me.$root.database().sync();
+					// me.$root.database().sync();
 
 					return {
 
-						local  : me.$root.dbconn.local,
+						// local  : me.$root.dbconn.local,
 						remote : me.$root.dbconn.remote
 
 					};
@@ -73,13 +73,13 @@ const database = {
 
 					});
 
-					me.$root.dbconn.local.close().then(function () {
+					/* me.$root.dbconn.local.close().then(function () {
 
 						me.dbconn.local = null;
 
 						me.sources.local = null;
 
-					});
+					}); */
 
 				},
 
@@ -96,13 +96,13 @@ const database = {
 
 				sync() {
 
-					PouchDB.sync(me.$root.sources.local, me.$root.sources.remote + '/' + me.$root.sources.local);
+					// PouchDB.sync(me.$root.sources.local, me.$root.sources.remote + '/' + me.$root.sources.local);
 
 				},
 
 				get(docId, respCallback, failCallback) {
 
-					me.$root.dbconn.local.get(docId)
+					me.$root.dbconn.remote.get(docId)
 
 							.then(function(doc) {
 
@@ -116,7 +116,7 @@ const database = {
 
 				find(obj, respCallback, failCallback) {
 
-					me.$root.dbconn.local.find(obj)
+					me.$root.dbconn.remote.find(obj)
 
 									.then(respCallback)
 
@@ -127,7 +127,7 @@ const database = {
 
 				create(obj, respCallback, failCallback) {
 
-					me.$root.dbconn.local.put(obj)
+					me.$root.dbconn.remote.put(obj)
 							
 							.then(function(response) {
 
@@ -143,7 +143,7 @@ const database = {
 
 				update(obj, respCallback, failCallback) {
 
-					me.$root.dbconn.local.get(obj._id)
+					me.$root.dbconn.remote.get(obj._id)
 
 							.then(function(doc) {
 
@@ -151,7 +151,7 @@ const database = {
 									_rev: doc._rev,
 								});
 
-								return me.$root.dbconn.local.put(obj);
+								return me.$root.dbconn.remote.put(obj);
 
 							}).then(function(response) {
 
@@ -166,7 +166,7 @@ const database = {
 
 				getAll(respCallback, failCallback) {
 
-					me.$root.dbconn.local.allDocs({
+					me.$root.dbconn.remote.allDocs({
 
 						include_docs: true,
 
@@ -180,13 +180,11 @@ const database = {
 
 				delete(docId, respCallback, failCallback) {
 
-					me.$root.dbconn.local.get(docId)
+					me.$root.dbconn.remote.get(docId)
 
 									.then(function(doc) {
 
-										console.log(doc);
-
-										return me.$root.dbconn.local.remove(doc);
+										return me.$root.dbconn.remote.remove(doc);
 
 									}).then(function(response) {
 
