@@ -10,8 +10,8 @@
       </thead>
       <tbody>
         <tr v-for="training in trainings" v-bind:key="training.id">
-          <td>{{training.title}}</td>
-          <td>{{training.description}}</td>
+          <td>{{training.doc.title}}</td>
+          <td>{{training.doc.description}}</td>
         </tr>
       </tbody>
     </table>
@@ -39,19 +39,13 @@ export default {
 
       me.$root.trainings().getTrainings(
         function(trainings) {
-          me.trainings = me.getTrainingsFromPouchDBRows(trainings);
+          me.trainings = trainings.rows;
         },
         function(error) {
           console.log(error);
         }
       );
     },
-    getTrainingsFromPouchDBRows (trainings){
-      return trainings;
-      // trainings.rows.forEach(element => {
-        
-      // });
-    }
   }
 };
 </script>
