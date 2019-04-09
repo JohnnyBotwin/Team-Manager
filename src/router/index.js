@@ -15,6 +15,7 @@ import Dashboard from '@/components/backoffice/Dashboard';
 import Backoffice from '@/components/layouts/Backoffice';
 import CreateUser from '@/components/backoffice/users/Create';
 import ListUsers from '@/components/backoffice/users/List';
+import ListProject from '@/components/backoffice/projects/List';
 
 
 
@@ -52,6 +53,11 @@ export default new Router({
           path: "users/list",
           name: "ListUsers",
           component: ListUsers
+        },
+        {
+          path: "project/list",
+          name: "ListProject",
+          component: ListProject
         },
       ]
     }

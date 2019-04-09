@@ -1,7 +1,7 @@
 <template>
 
-    <div id="project-list">
-
+    <div id="">
+        <h1>Projects</h1>
 
     </div>
 
@@ -9,8 +9,7 @@
 
 <script type="text/javascript">
     export default {
-        el: 'project-list',
-        name: 'Project',
+        name: 'ListProject',
         data() {
             return {
                 project: {
@@ -22,7 +21,7 @@
             }
         },
         created() {
-
+            this.list();
 
 
         },
