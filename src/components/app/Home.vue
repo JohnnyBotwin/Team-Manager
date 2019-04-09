@@ -1,16 +1,20 @@
 <template>
 
 	<div class="app" id="home">
-
+ <datepicker></datepicker>
 	</div>
 
 </template>
 
 <script type="text/javascript">
 
-export default {
+import Datepicker from 'vuejs-datepicker';
 
-	name : 'Home',
+export default {
+  components: {
+    Datepicker
+    },
+  name : 'Home',
 
 	created() {
 

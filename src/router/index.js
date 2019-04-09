@@ -14,6 +14,9 @@ import Home from '@/components/app/Home';
 import Dashboard from '@/components/backoffice/Dashboard';
 
 
+
+
+
 Vue.use(Router)
 
 export default new Router({

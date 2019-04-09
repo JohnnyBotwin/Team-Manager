@@ -36,9 +36,13 @@ export default {
 	methods : {
 		login() {
      const me = this;
+      /*me.$root.users().createUser({email: 'diogo.tavares@findmore.pt', password: '123',
+      name: 'Diogo Tavares'})*/
+
      me.$root.users().getUser(me.user.name ,
+
         function(user) {
-         me.$router.push({ name: 'Home', params: { userId: user.name } });
+          me.$router.push({ name: 'Home', params: { userId: user.name } });
         },
 
         function(error) {
