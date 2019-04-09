@@ -1,10 +1,8 @@
 <template>
-
     <div id="">
         <h1>Projects</h1>
 
     </div>
-
 </template>
 
 <script type="text/javascript">
@@ -12,28 +10,21 @@
         name: 'ListProject',
         data() {
             return {
-                project: {
-                    id: null,
-                    name: '',
-                    title: '',
-                    description: ''
-                }
+                projects: []
             }
         },
         created() {
             this.list();
-
-
         },
-
         methods : {
             list() {
-
-                // push to database
+                // push from database
                 let me = this;
 
-                me.$root.projects().getProjects(function(project) {
-                    console.log(project);
+                me.$root.projects().getProjects(function(projects) {
+                    me.projects = projects;
+
+                    console.log(projects);
                 }, function(error) {
                     console.log(error);
                 });
