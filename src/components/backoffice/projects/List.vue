@@ -1,6 +1,10 @@
 <template>
-    <div id="">
+    <div id="projects">
         <h1>Projects</h1>
+        <div v-for="project in projects">
+            <button :data-id="project.id" @click="showProject">{{ project.doc.name }}</button>
+            <p class="" style="display: none;">{{ project.doc.description }}</p>
+        </div>
 
     </div>
 </template>
@@ -17,12 +21,15 @@
             this.list();
         },
         methods : {
+            showProject(e) {
+                debugger;
+            },
             list() {
                 // push from database
                 let me = this;
 
-                me.$root.projects().getProjects(function(projects) {
-                    me.projects = projects;
+                me.$root.projects().getProjects(function(response) {
+                    me.projects = response.rows;
 
                     console.log(projects);
                 }, function(error) {
