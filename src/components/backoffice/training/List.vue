@@ -12,7 +12,7 @@
         <tr v-for="training in trainings" v-bind:key="training.id">
           <td>{{training.doc.title}}</td>
           <td>{{training.doc.description}}</td>
-          <td><a href="#" @click="deleteTraining(training.doc.title)">X</a></td>
+          <td><a href="#" @click.prevent.stop="deleteTraining(training.doc.title)">X</a></td>
         </tr>
       </tbody>
     </table>
