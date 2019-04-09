@@ -9,12 +9,12 @@
         <input v-model="name"
                type="text"
                name="name"
-               placeholder="Insert project name...">
+               placeholder="Insert name...">
 
         <input v-model="title"
                type="text"
                name="title"
-               placeholder="Insert project title...">
+               placeholder="Insert title...">
 
         <input v-model="description"
                type="text"
@@ -40,10 +40,7 @@
         },
         created() {
 
-
-
         },
-
         methods : {
             create() {
                 let me = this;
@@ -55,6 +52,7 @@
                         description: me.description
                     },
                     function(response) {
+                        console.log(me);
                         console.log(response);
                     },
                     function(error) {
@@ -64,6 +62,5 @@
             },
         }
     }
-
 
 </script>
