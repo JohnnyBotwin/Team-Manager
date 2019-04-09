@@ -4,70 +4,64 @@
         <input v-model="id"
                type="text"
                name="id"
-               value="{{ id }}" disabled>
+               disabled>
 
         <input v-model="name"
                type="text"
                name="name"
-               value="{{ name }}"
-               placeholder="Insert project name...">
+               placeholder="Insert name...">
 
         <input v-model="title"
                type="text"
                name="title"
-               value="{{ title }}"
-               placeholder="Insert project title...">
+               placeholder="Insert title...">
 
         <input v-model="description"
                type="text"
                name="description"
-               value="{{ description }}"
                placeholder="Insert description...">
+
+        <button @click="create">Create Project</button>
 
     </div>
 
 </template>
 
 <script type="text/javascript">
-    import Database from 'database';
-
     export default {
-        el: 'project-create',
-        name: 'Project',
+        name: 'CreateProject',
         data() {
             return {
-                project: {
-                    id: null,
-                    name: '',
-                    title: '',
-                    description: ''
-                }
+                id: null,
+                name: '',
+                title: '',
+                description: ''
             }
         },
         created() {
 
-
-
         },
-
         methods : {
-            create(project) {
-                this.project.name        = project.name;
-                this.project.title       = project.title;
-                this.project.description = project.description;
+            create() {
+                let me = this;
 
-                // push to database
-                var _db = db('project').connect();
-
-                try {
-                    _db.database().create(this.project);
-                } catch (e) {
-                    throw e;
-                }
+                me.$root.projects().createProject(
+                    {
+                        name: me.name,
+                        title: me.title,
+                        description: me.description
+                    },
+                    function(response) {
+                        console.log(me);
+                        console.log(response);
+                    },
+                    function(error) {
+                        console.log(me);
+                        console.log(error);
+                    }
+                );
             },
-
         }
     }
-
 
 </script>

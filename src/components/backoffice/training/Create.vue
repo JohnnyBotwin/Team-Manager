@@ -27,11 +27,12 @@ export default {
 
       me.$root.trainings().createTraining(
         {
-          name: me.title,
+          title: me.title,
           description: me.description
         },
         function(response) {
           console.log(response);
+          me.$router.push('/backoffice/training/list');
         },
         function(error) {
           console.log(error);
