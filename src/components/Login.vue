@@ -2,8 +2,8 @@
 	
 	<div class="app" id="login">
 
-		<input type='textfield' name='username'>
-		<input type='password' name='password'>
+		<input v-model='user.name' type='textfield' name='username'>
+		<input v-model='user.password' type='password' name='password'>
 		<input type='submit'>  
 
 
@@ -17,15 +17,27 @@ export default {
 
 	name : 'Login',
 
-	created() {
+	data() {
+		return {
+			user: {
+				name: '',
+				password: ''
+			}
+		}
+	},
 
-		
+	created() {
+		const me = this;
+	},
+
+	mounted() {
+
 	},
 
 	methods : {
+		login() {
 
-
-
+		}
 	},
 
 }
