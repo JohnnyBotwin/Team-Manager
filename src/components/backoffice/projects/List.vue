@@ -19,7 +19,7 @@
                     <button :data-id="project.id"
                             type="button"
                             class="btn btn-primary"
-                            @click="updateProject(project)">&nbsp;&nbsp;edit&nbsp;&nbsp;</button>
+                            @click="showProject(project)">&nbsp;&nbsp;show&nbsp;&nbsp;</button>
                     <button :data-id="project.id"
                             type="button"
                             class="btn btn-danger"
@@ -64,13 +64,15 @@
                 console.log(project);
 
                 me.$root.projects().deleteProject(project.doc.name, function (res) {
+                    console.log(res);
+
                     el[0].remove();
                 }, function (error) {
                     console.log(error);
                 });
             },
-            updateProject(project) {
-                console.log(project);
+            showProject(project) {
+                this.$router.push({name : 'ShowProject', params: {id : project.id}});
             }
         }
     }
