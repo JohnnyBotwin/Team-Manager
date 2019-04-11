@@ -1,24 +1,35 @@
-<template>
+<!-- <template>
   <div class="app" id="login">
-    <template>
-      <div class="app" id="login">
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3">
-            <input class="form-control" v-model="user.name" type="textfield" name="username">
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3">
-            <input class="form-control" v-model="user.password" type="password" name="password">
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3 text-right">
-            <input type="submit" @click="login()" value="login">
-          </div>
-        </div>
+    <div class="row form-group">
+      <div class="col-md-4 offset-md-3">
+        <input class="form-control" v-model="user.name" type="textfield" name="username">
       </div>
-    </template>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4 offset-md-3">
+        <input class="form-control" v-model="user.password" type="password" name="password">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-md-4 offset-md-3 text-right">
+        <input type="submit" @click="login()" value="login">
+      </div>
+    </div>
+  </div>
+</template>-->
+<template>
+<div class="outterForm">
+  <div class="form-signin">
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" v-model="user.name" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" v-model="user.password" class="form-control" placeholder="Password" required="">
+      <div class="checkbox mb-3">
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" @click="login()">Sign in</button>
+    </div>
   </div>
 </template>
 
@@ -72,5 +83,58 @@ export default {
   }
 };
 </script>
+
+<style>
+html,
+#app {
+  height: 100%;
+}
+
+.outterForm {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+  height: 100%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
 
 
