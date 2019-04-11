@@ -43,7 +43,9 @@ export default {
         name: "",
         password: "",
         email: ""
-      }
+      },
+      emptyField: false,
+      loginError: false
     };
   },
 
@@ -56,29 +58,32 @@ export default {
   methods: {
     login() {
       const me = this;
-      /*me.$root.users().createUser({email: 'diogo.tavares@findmore.pt', password: '123',
-      name: 'Diogo Tavares'})*/
+      if (me.user.email == "") {
+        me.emptyField = true;
+      }
+      else {
+        me.emptyField = false;
+        me.loginError = false;
+        me.$root.users().getUser(
+          me.user.email,
 
-      me.$root.users().getUser(
-        me.user.name,
+          function(user) {
+            if(user.password == me.user.password)
+              me.$router.push({ name: "Home", params: { userId: user.name } });
+            else  me.loginError = true;
+          },
 
-        function(user) {
-          me.$router.push({ name: "Home", params: { userId: user.name } });
-        },
-
-        function(error) {
-          alert("User not found");
-        }
-      );
+          function(error) {
+            me.loginError = true;
+          }
+        );
+      }
     },
 
     loadTrainings: function() {
       const me = this;
       let users = me.$root.users().getUsers();
       console.log(users);
-      /*me.$root.trainings().createTraining({id: 1, title: 'test', description: 'new description'});
-      let trainings = me.$root.trainings().getTrainings();
-      console.log(trainings);*/
     }
   }
 };
