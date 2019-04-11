@@ -21,7 +21,8 @@ export default {
 		return {
 			user: {
 				name: '',
-				password: ''
+        password: '',
+        email: ''
 			}
 		}
 	},
@@ -52,7 +53,7 @@ export default {
     },
 
      loadTrainings: function(){
-      let me = this;
+      const me = this;
       let users =	me.$root.users().getUsers();
       console.log(users);
       /*me.$root.trainings().createTraining({id: 1, title: 'test', description: 'new description'});

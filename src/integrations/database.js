@@ -26,14 +26,14 @@ const database = {
 
 	created() {
 
-		let me = this;
+		const me = this;
 
 	},
 
 
 	updated() {
 
-		let me = this;
+		const me = this;
 
 	},
 
@@ -42,7 +42,7 @@ const database = {
 
 		db(namespace) {
 
-			let me = this;
+			const me = this;
 
 			me.$root.sources.local = namespace;
 
@@ -89,7 +89,7 @@ const database = {
 
 		database() {
 
-			let me = this;
+			const me = this;
 
 
 			return {
@@ -211,7 +211,7 @@ const users = {
 
 		users() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('users').connect();
 
@@ -267,7 +267,7 @@ const teams = {
 
 		teams() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('teams').connect();
 
@@ -323,7 +323,7 @@ const userTeams = {
 
 		userTeams() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('user_teams').connect();
 
@@ -374,7 +374,7 @@ const trainings = {
 
 		trainings() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('trainings').connect();
 
@@ -429,7 +429,7 @@ const schedules = {
 
 		schedules() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('schedules').connect();
 
@@ -497,7 +497,7 @@ const projects = {
 
 		projects() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('projects').connect();
 
@@ -553,7 +553,7 @@ const roles = {
 
 		roles() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('roles').connect();
 
@@ -610,7 +610,7 @@ const tasks = {
 
 		tasks() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('tasks').connect();
 
@@ -680,7 +680,7 @@ const userRoles = {
 
 		userRoles() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('user_roles').connect();
 
@@ -729,7 +729,7 @@ const projectRoles = {
 
 		projectRoles() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('project_roles').connect();
 
@@ -778,7 +778,7 @@ const teamTraining = {
 
 		teamTraining() {
 
-			let me = this;
+			const me = this;
 
 			me.$root.db('team_training').connect();
 
