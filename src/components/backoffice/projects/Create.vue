@@ -1,22 +1,22 @@
 <template>
 
     <div id="project-create">
-        <input v-model="id"
+        <input v-model="project.id"
                type="text"
                name="id"
                disabled>
 
-        <input v-model="name"
+        <input v-model="project.name"
                type="text"
                name="name"
                placeholder="Insert name...">
 
-        <input v-model="title"
+        <input v-model="project.title"
                type="text"
                name="title"
                placeholder="Insert title...">
 
-        <input v-model="description"
+        <input v-model="project.description"
                type="text"
                name="description"
                placeholder="Insert description...">
@@ -31,14 +31,14 @@
     export default {
         name: 'CreateProject',
         data() {
-            return { 
-
-            // JMORAIS: at some point youll need to start adding more variables in your data... so, youll need to start wrapping your properties into objects. example: return { user : { id: null, name: '', ... }, loaders: { checkingUsername: false, }, ... }
-
-                id: null,
-                name: '',
-                title: '',
-                description: ''
+            return {
+                // JMORAIS: at some point youll need to start adding more variables in your data... so, youll need to start wrapping your properties into objects. example: return { user : { id: null, name: '', ... }, loaders: { checkingUsername: false, }, ... }
+                project: {
+                    id: null,
+                    name: '',
+                    title: '',
+                    description: ''
+                }
             }
         },
         created() {
@@ -50,9 +50,9 @@
 
                 me.$root.projects().createProject(
                     {
-                        name: me.name,
-                        title: me.title,
-                        description: me.description
+                        name: me.project.name,
+                        title: me.project.title,
+                        description: me.project.description
                     },
                     function(response) {
                         console.log(me);
