@@ -31,7 +31,10 @@
     export default {
         name: 'CreateProject',
         data() {
-            return {
+            return { 
+
+            // JMORAIS: at some point youll need to start adding more variables in your data... so, youll need to start wrapping your properties into objects. example: return { user : { id: null, name: '', ... }, loaders: { checkingUsername: false, }, ... }
+
                 id: null,
                 name: '',
                 title: '',

@@ -32,7 +32,7 @@ export default new Router({
       component: Login
     },
     {
-      path: "/backoffice/",
+      path: "/backoffice/", // JMORAIS: recomendation: always start the paths with the slash and finish with no slash: [/backoffice ; /backoffice/users ; /] 
       name: "Backoffice",
       component: Backoffice,
       children: [

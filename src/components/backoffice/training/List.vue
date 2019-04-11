@@ -12,10 +12,15 @@
         <tr v-for="training in trainings" v-bind:key="training.id">
           <td>{{training.doc.title}}</td>
           <td>{{training.doc.description}}</td>
+          <!-- JMORAIS: just a small note about html, this <a> should be a <button>, for multiple reasons:
+               - you're invoking an action, not linking your website to another page or "linking" a section
+               on your content page.
+           -->
           <td><a href="#" @click.prevent.stop="deleteTraining(training.doc.title)">X</a></td>
         </tr>
       </tbody>
     </table>
+    <!-- e aqui exactamente o contrário: um <a> ou um <router-link to="/backoffice/training/create"></router-link> em vez de um <button>. Dispensa a criação de uma função redudante. -->
     <button @click="createTraining">Create New Training</button>
   </div>
 </template>

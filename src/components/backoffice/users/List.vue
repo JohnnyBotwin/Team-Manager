@@ -2,7 +2,10 @@
   <div>
     <h1>Users</h1>
     <!-- user list should be able to delete -->
-    <template v-if="loading">Loading...</template>
+    <template v-if="loading">Loading...</template> <!-- JMORAIS: Porquê é que não está dentro de uma <div> ?
+      A <div> só entra se a variável "loading" estiver a true. 
+      O output vai ser <h1>Users</h1>Loading...<ul.../ul>, e não queremos ter o loading ali perdido no meio, mas sim prepará-lo para a função dele.
+    --> 
 
     <template v-if="users !== null">
       <ul v-for="user in users" :key="user.id">
