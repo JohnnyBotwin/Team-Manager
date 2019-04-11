@@ -2,14 +2,15 @@
     <div id="projects">
         <h1>Project # {{ project._id }}</h1>
 
-        <h4>Name: {{ project.name }}</h4>
-        <h4>Description: {{ project.description }}</h4>
+        <input name="name" v-model="project.name">
+        <input name="name" v-model="project.description">
+        <button @click="update(project)" class="btn btn-primary">Submit</button>
     </div>
 </template>
 
 <script type="text/javascript">
     export default {
-        name: 'ShowProject',
+        name: 'UpdateProject',
         data() {
             return {
                 project: {}
@@ -28,6 +29,17 @@
                     console.log(res);
 
                     me.project = res;
+                }, function (error) {
+                    console.log(error);
+                });
+            },
+            update(project) {
+                console.log(project);
+
+                let me = this;
+
+                me.$root.projects().update(me.project, function (res) {
+                    console.log(res);
                 }, function (error) {
                     console.log(error);
                 });
