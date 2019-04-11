@@ -12,6 +12,7 @@
   "dependencies": {
     "@vue/cli": "^3.5.5",
     "md5": "^2.2.1",
+    "moment": "^2.24.0",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
     "vue": "^2.5.2",

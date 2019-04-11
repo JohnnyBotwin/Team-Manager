@@ -128,7 +128,7 @@ const database = {
 				create(obj, respCallback, failCallback) {
 
 					me.$root.dbconn.remote.put(obj)
-							
+
 							.then(function(response) {
 
 								me.$root.database().sync();
@@ -173,7 +173,7 @@ const database = {
 					})
 
 						.then(respCallback)
-						
+
 						.catch(failCallback);
 
 				},
@@ -192,9 +192,9 @@ const database = {
 
 										respCallback(response);
 
-									}).catch(failCallback);				
+									}).catch(failCallback);
 
-				} 
+				}
 
 			};
 
@@ -473,10 +473,11 @@ const schedules = {
 
 				},
 
-				trainingSchedules(training) {
+				trainingSchedules(training, respCallback, failCallback) {
 
 					me.$root.database().find({
-						selector: { training : md5(training) },
+            selector: { training : md5(training) },
+            respCallback, failCallback
 					});
 
 				},
