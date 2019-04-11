@@ -1,24 +1,26 @@
 <template>
   <div class="app" id="login">
-    <template>
-      <div class="app" id="login">
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3">
-            <input class="form-control" v-model="user.name" type="textfield" name="username">
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3">
-            <input class="form-control" v-model="user.password" type="password" name="password">
-          </div>
-        </div>
-        <div class="row form-group">
-          <div class="col-md-4 offset-md-3 text-right">
-            <input type="submit" @click="login()" value="login">
-          </div>
+    <div class="app" id="login">
+      <div class="row form-group">
+        <div class="col-md-4 offset-md-3">
+          <input class="form-control" v-model="user.email" type="textfield" name="username">
         </div>
       </div>
-    </template>
+      <div class="row form-group">
+        <div class="col-md-4 offset-md-3">
+          <input class="form-control" v-model="user.password" type="password" name="password">
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-4 offset-md-3" v-if="emptyField">E-mail is empty</div>
+        <div class="col-md-4 offset-md-3"  v-if="loginError">Login error</div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-4 offset-md-3 text-right">
+          <input type="submit" @click="login()" value="login">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,7 +34,9 @@ export default {
         name: "",
         password: "",
         email: ""
-      }
+      },
+      emptyField: false,
+      loginError: false
     };
   },
 
@@ -45,29 +49,32 @@ export default {
   methods: {
     login() {
       const me = this;
-      /*me.$root.users().createUser({email: 'diogo.tavares@findmore.pt', password: '123',
-      name: 'Diogo Tavares'})*/
+      if (me.user.email == "") {
+        me.emptyField = true;
+      }
+      else {
+        me.emptyField = false;
+        me.loginError = false;
+        me.$root.users().getUser(
+          me.user.email,
 
-      me.$root.users().getUser(
-        me.user.name,
+          function(user) {
+            if(user.password == me.user.password)
+              me.$router.push({ name: "Home", params: { userId: user.name } });
+            else  me.loginError = true;
+          },
 
-        function(user) {
-          me.$router.push({ name: "Home", params: { userId: user.name } });
-        },
-
-        function(error) {
-          alert("User not found");
-        }
-      );
+          function(error) {
+            me.loginError = true;
+          }
+        );
+      }
     },
 
     loadTrainings: function() {
       const me = this;
       let users = me.$root.users().getUsers();
       console.log(users);
-      /*me.$root.trainings().createTraining({id: 1, title: 'test', description: 'new description'});
-      let trainings = me.$root.trainings().getTrainings();
-      console.log(trainings);*/
     }
   }
 };
