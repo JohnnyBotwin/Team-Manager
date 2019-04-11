@@ -19,7 +19,8 @@ import CreateUser from '@/components/backoffice/users/Create';
 import ListUsers from '@/components/backoffice/users/List';
 import ListProject from '@/components/backoffice/projects/List';
 import CreateProject from '@/components/backoffice/projects/Create';
-
+import ShowProject from '@/components/backoffice/projects/Show';
+import UpdateProject from '@/components/backoffice/projects/Update';
 
 
 Vue.use(Router)
@@ -60,6 +61,16 @@ export default new Router({
           path: "project/create",
           name: "CreateProject",
           component: CreateProject
+        },
+        {
+          path: "project/show/:id",
+          name: "ShowProject",
+          component: ShowProject
+        },
+        {
+          path: "project/update/:id",
+          name: "UpdateProject",
+          component: UpdateProject
         },
         {
           path: 'training/list',

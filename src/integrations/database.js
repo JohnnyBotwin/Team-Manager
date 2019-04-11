@@ -396,6 +396,24 @@ const trainings = {
 
 				},
 
+
+				updateTraining(training, respCallback, failCallback) {
+
+					if(typeof training.title === 'undefined') {
+
+						return failCallback('Error - Invalid title address!');
+
+					}
+
+					Object.assign(training, {
+						_id : md5(training.title),
+					});
+
+					me.$root.database().update(training, respCallback, failCallback);
+
+				},
+
+
 				getTrainings(respCallback, failCallback) {
 
 					me.$root.database().getAll(respCallback, failCallback);
@@ -530,7 +548,16 @@ const projects = {
 					me.$root.database().get(md5(name), respCallback, failCallback);
 
 				},
+                get(id, respCallback, failCallback) {
+                    me.$root.database().get(id, respCallback, failCallback);
+                },
+                update(project, respCallback, failCallback) {
+                    Object.assign(project, {
+                        _id : project._id
+                    });
 
+                    me.$root.database().update(project, respCallback, failCallback);
+                },
 				deleteProject(name, respCallback, failCallback) {
 
 					me.$root.database().delete(md5(name), respCallback, failCallback);
