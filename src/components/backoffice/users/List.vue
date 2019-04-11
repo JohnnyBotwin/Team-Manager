@@ -4,13 +4,7 @@
     <h1>
       <small class="text-muted">Manage Users</small>
     </h1>
-    <!-- user list should be able to delete -->
     <div v-if="loading" class="alert alert-primary" role="alert">Loading...</div>
-    <!-- JMORAIS: Porquê é que não está dentro de uma <div> ?
-      A <div> só entra se a variável "loading" estiver a true. 
-      O output vai ser <h1>Users</h1>Loading...<ul.../ul>, e não queremos ter o loading ali perdido no meio, mas sim prepará-lo para a função dele.
-    -->
-
     <template v-if="users !== null">
       <ul v-for="user in users" :key="user.id">
         <div class="card bg-light mb-3">
@@ -22,7 +16,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Role"
+                    placeholder="Name"
                     :v-model="user.doc.name"
                     :value="user.doc.name"
                   >
@@ -34,7 +28,7 @@
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="Role"
+                    placeholder="Email"
                     :v-model="user.doc.email"
                     :value="user.doc.email"
                   >
@@ -54,8 +48,8 @@
               </div>
               <UserRole :email="user.doc.email"/>
               <div align="center">
-                <button class="btn btn-info">Edit</button>
-                <button class="btn btn-outline-danger">Delete</button>
+                <button @click.prevent="edit(user.id)" class="btn btn-info">Edit</button>
+                <button @click.prevent="del(user.id)" class="btn btn-outline-danger">Delete</button>
               </div>
             </li>
           </div>
@@ -100,7 +94,13 @@ export default {
           alert(error);
         }
       );
-    }
+    },
+    edit(id) {
+      console.log(id);
+    },
+    del(id) {
+      console.log(id);
+    },
   }
 };
 </script>

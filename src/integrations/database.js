@@ -226,7 +226,7 @@ const users = {
 					}
 
 					Object.assign(user, {
-						_id : user.email,
+						_id : md5(user.email),
 					});
 
 					me.$root.database().create(user, respCallback, failCallback);

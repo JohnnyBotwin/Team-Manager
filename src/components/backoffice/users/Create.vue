@@ -3,35 +3,30 @@
     <h1 align="center">
       <small class="text-muted">Create</small>
     </h1>
-    <div class="card  border-primary mb-3 bg-light">
+    <div class="card border-primary mb-3 bg-light">
       <div class="card-body">
         <form>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Name:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Role" :v-model="name">
+              <input type="text" class="form-control" placeholder="Role" v-model="name">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Role" :v-model="email">
+              <input type="email" class="form-control" placeholder="Role" v-model="email">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-10">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                :v-model="password"
-              >
+              <input type="password" class="form-control" placeholder="Password" v-model="password">
             </div>
           </div>
-          <UserRole :email="null"/>
+          <UserRole :email="null" @getValue="setRole"/>
           <div align="center">
-            <button class="btn btn-info">Add</button>
+            <button @click.prevent="create()" class="btn btn-info">Add</button>
           </div>
         </form>
       </div>
@@ -54,6 +49,33 @@ export default {
       password: "",
       role: ""
     };
+  },
+  methods: {
+    create() {
+      let me = this;
+
+      const user = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        role: this.role
+      };
+
+      console.log(user);
+
+      me.$root.users().createUser(
+        user,
+        function(response) {
+          console.log(response);
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+    },
+    setRole(role) {
+      this.role = role;
+    }
   }
 };
 </script>
