@@ -1,25 +1,65 @@
 <template>
-  <div>
-    <h1>Users</h1>
+  <div class="content">
+    <Create/>
+    <h1>
+      <small class="text-muted">Manage Users</small>
+    </h1>
     <!-- user list should be able to delete -->
-    <template v-if="loading">Loading...</template> <!-- JMORAIS: Porquê é que não está dentro de uma <div> ?
+    <div v-if="loading" class="alert alert-primary" role="alert">Loading...</div>
+    <!-- JMORAIS: Porquê é que não está dentro de uma <div> ?
       A <div> só entra se a variável "loading" estiver a true. 
       O output vai ser <h1>Users</h1>Loading...<ul.../ul>, e não queremos ter o loading ali perdido no meio, mas sim prepará-lo para a função dele.
-    --> 
+    -->
 
     <template v-if="users !== null">
       <ul v-for="user in users" :key="user.id">
-        <li>
-          <label>name:</label>
-          <span>{{user.doc.name}}</span>
-        </li>
-        <li>
-          <label>email:</label>
-          <span>{{user.doc.email}}</span>
-        </li>
-        <li>
-          <UserRole :email="user.doc.email"/>
-        </li>
+        <div class="card bg-light mb-3">
+          <div class="card-body">
+            <li>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Role"
+                    :v-model="user.doc.name"
+                    :value="user.doc.name"
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Role"
+                    :v-model="user.doc.email"
+                    :value="user.doc.email"
+                  >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Password:</label>
+                <div class="col-sm-10">
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    :v-model="user.doc.password"
+                    :value="user.doc.password"
+                  >
+                </div>
+              </div>
+              <UserRole :email="user.doc.email"/>
+              <div align="center">
+                <button class="btn btn-info">Edit</button>
+                <button class="btn btn-outline-danger">Delete</button>
+              </div>
+            </li>
+          </div>
+        </div>
       </ul>
     </template>
   </div>
@@ -27,10 +67,13 @@
 
 <script>
 import UserRole from "@/components/backoffice/users/Roles";
+import Create from "@/components/backoffice/users/Create";
+
 export default {
   name: "user-list",
   components: {
-    UserRole
+    UserRole,
+    Create
   },
   data() {
     return {
@@ -61,3 +104,24 @@ export default {
   }
 };
 </script>
+
+<style lang="css" scoped>
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  margin: 0 auto;
+}
+ul {
+  padding: 0;
+  width: 90%;
+}
+li {
+  list-style: none;
+}
+label {
+  font-weight: bold;
+}
+</style>
+
