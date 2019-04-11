@@ -2,7 +2,7 @@
 
 	<div class="app" id="home">
  		<datepicker></datepicker>
-
+		Search by title:<input class="form-control" v-model="search" type="text" name="text" style="width:400px;">
 		<table class="table">
 			<thead>
 				<tr>
@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(taining , index) in tainingsList">
+				<tr v-for="(taining , index) in tainingsList" v-if="taining.doc.title.includes(search)">
 					<th scope="row">{{ index }}</th>
 					<td>{{ taining.doc.title}}</td>
 					<td>{{ taining.doc.description }}</td>
@@ -37,6 +37,7 @@ export default {
 	data (){
 			return {
 				tainingsList : [],
+				search : '',
 			}
 	},
 	created() {
@@ -64,7 +65,7 @@ export default {
 		}
 	},
 
-	
+
 
 }
 
