@@ -22,6 +22,10 @@
                             @click="showProject(project)">&nbsp;&nbsp;show&nbsp;&nbsp;</button>
                     <button :data-id="project.id"
                             type="button"
+                            class="btn btn-warning"
+                            @click="updateProject(project)">&nbsp;update&nbsp;</button>
+                    <button :data-id="project.id"
+                            type="button"
                             class="btn btn-danger"
                             @click="deleteProject(project)">delete</button>
                 </td>
@@ -73,6 +77,9 @@
             },
             showProject(project) {
                 this.$router.push({name : 'ShowProject', params: {id : project.id}});
+            },
+            updateProject(project) {
+                this.$router.push({name : 'UpdateProject', params: {id : project.id}});
             }
         }
     }
