@@ -1,6 +1,6 @@
 <template>
   <div class="create-training">
-    <h2 class="title">{{createOrUpdateLabel}} Trainings</h2>
+    <h2 class="title">{{createOrUpdateLabel}} Training</h2>
     <label for="project-title">Title</label>
     <input type="text" name="project-title" id="project-title" v-model="training.title">
     <label for="project-description">Description</label>
@@ -26,24 +26,22 @@ export default {
   },
   created() {},
   mounted() {
-    if (this.trainingToUpdate != undefined) {
-      this.training = this.trainingToUpdate;
-      this.createOrUpdateLabel = "Update";
-    }
+    this.training = this.trainingToUpdate || {};
+    this.createOrUpdateLabel = this.trainingToUpdate ? "Update" : "Create";
   },
 
   methods: {
     createOrUpdateTraining() {
       let me = this;
-      if (trainingToUpdate) {
-        me.$root.trainings().Update(
+      if (this.trainingToUpdate) {
+        me.$root.trainings().updateTraining(
           {
-            title: me.training.title,
-            description: me.training.description
+            title: me.trainingToUpdate.title,
+            description: me.trainingToUpdate.description
           },
           function(response) {
             console.log(response);
-            me.$router.push("/backoffice/training/list");
+            me.$emit('updated', me.trainingToUpdate)
           },
           function(error) {
             console.log(error);

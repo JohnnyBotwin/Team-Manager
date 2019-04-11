@@ -15,7 +15,7 @@
           <td>{{training.doc.title}}</td>
           <td>{{training.doc.description}}</td>
           <td>
-            <button @click="trainingToUpdate = training.doc">Update this training</button>
+            <button @click="trainingToUpdate = copyObject(training.doc)">Update this training</button>
           </td>
           <td>
             <button @click="deleteTraining(training.doc.title)">X</button>
@@ -23,7 +23,7 @@
         </tr>
       </tbody>
     </table>
-    <updateTraining v-if="trainingToUpdate" :trainingToUpdate="trainingToUpdate"></updateTraining>
+    <updateTraining @updated="updated" v-if="trainingToUpdate" v-bind:trainingToUpdate="trainingToUpdate"></updateTraining>
     <a href="#" @click.prevent.stop="createTraining">Create New Training</a>
   </div>
 </template>
@@ -47,6 +47,20 @@ export default {
   created() {},
 
   methods: {
+    updated(training) {
+      this.listTrainings();
+      this.trainingToUpdate = null;
+    },
+    copyObject(src) {
+      let target = {};
+      for (let prop in src) {
+        if (src.hasOwnProperty(prop)) {
+          target[prop] = src[prop];
+        }
+      }
+      return target;
+    },
+    UpdateTraining() {},
     listTrainings() {
       let me = this;
 
