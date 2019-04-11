@@ -55,8 +55,9 @@
                         description: me.project.description
                     },
                     function(response) {
-                        console.log(me);
                         console.log(response);
+
+                        me.$router.push({name : 'ShowProject', params: {id : response.id}});
                     },
                     function(error) {
                         console.log(me);
