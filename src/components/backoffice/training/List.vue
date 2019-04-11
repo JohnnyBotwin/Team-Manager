@@ -6,35 +6,42 @@
         <tr>
           <th>Title</th>
           <th>description</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="training in trainings" v-bind:key="training.id">
           <td>{{training.doc.title}}</td>
           <td>{{training.doc.description}}</td>
-          <!-- JMORAIS: just a small note about html, this <a> should be a <button>, for multiple reasons:
-               - you're invoking an action, not linking your website to another page or "linking" a section
-               on your content page.
-           -->
-          <td><a href="#" @click.prevent.stop="deleteTraining(training.doc.title)">X</a></td>
+          <td>
+            <button @click="trainingToUpdate = training.doc">Update this training</button>
+          </td>
+          <td>
+            <button @click="deleteTraining(training.doc.title)">X</button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <!-- e aqui exactamente o contrário: um <a> ou um <router-link to="/backoffice/training/create"></router-link> em vez de um <button>. Dispensa a criação de uma função redudante. -->
-    <button @click="createTraining">Create New Training</button>
+    <updateTraining v-if="trainingToUpdate" :trainingToUpdate="trainingToUpdate"></updateTraining>
+    <a href="#" @click.prevent.stop="createTraining">Create New Training</a>
   </div>
 </template>
 
 <script type="text/javascript">
+import updateTraining from "./Create";
 export default {
   name: "BOListTraining",
-
+  components: {
+    updateTraining
+  },
   data() {
     return {
-      trainings: []
+      trainings: [],
+      trainingToUpdate: null
     };
   },
-  mounted () {
+  mounted() {
     this.listTrainings();
   },
   created() {},
@@ -55,9 +62,10 @@ export default {
     deleteTraining(title) {
       let me = this;
 
-      me.$root.trainings().deleteTraining(title,
+      me.$root.trainings().deleteTraining(
+        title,
         function(response) {
-          console.log(response)
+          console.log(response);
           me.listTrainings();
         },
         function(error) {
@@ -66,10 +74,12 @@ export default {
       );
     },
     createTraining() {
-      this.$router.push('/backoffice/training/create')
+      this.$router.push("/backoffice/training/create");
     }
   }
 };
 </script>
 
 
+<style>
+</style>
