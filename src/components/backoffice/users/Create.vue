@@ -8,7 +8,7 @@
         <form>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Name:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10">                                     <!-- JMORAIS: o v-model é uma directiva custom do VueJS. Não necessita de :  -->
               <input type="text" class="form-control" placeholder="Role" :v-model="name">
             </div>
           </div>
@@ -48,7 +48,7 @@ export default {
     UserRole
   },
   data() {
-    return {
+    return { // JMORAIS: questão de ter as propriedades dentro de um objeto que o identifique.
       name: "",
       email: "",
       password: "",

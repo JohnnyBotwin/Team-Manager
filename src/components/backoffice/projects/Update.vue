@@ -4,6 +4,7 @@
 
         <input name="name" v-model="project.name">
         <input name="name" v-model="project.description">
+                        <!-- JMORAIS: é redudante passar o project neste método, uma vez que o project está na nossa propriedade data. -->
         <button @click="update(project)" class="btn btn-primary">Submit</button>
     </div>
 </template>
