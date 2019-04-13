@@ -22,16 +22,23 @@
       </thead>
       <tbody>
         <tr
-          v-for="(taining , index) in tainingsList"
-          v-if="taining.doc.title.toLowerCase().includes(search.toLowerCase())"
-          @click="getSchedules(taining.doc.title)"
+          class="training-item"
+          v-for="(training , index) in tainingsList"
+          v-if="training.doc.title.toLowerCase().includes(search.toLowerCase())"
+          @click="getSchedules(training)"
         >
           <th scope="row">{{ index + 1 }}</th>
-          <td>{{ taining.doc.title}}</td>
-          <td>{{ taining.doc.description }}</td>
+          <td>{{ training.doc.title}}</td>
+          <td>{{ training.doc.description }}</td>
         </tr>
       </tbody>
     </table>
+    <div class="row col-md-12">Schedules</div>
+    <div class="row col-md-12" v-for="(schedule, index) in scheduleList">
+      <div class="col-md-4">{{schedule.id}}</div>
+      <div class="col-md-4">{{schedule.scheduled_at}}</div>
+      <div class="col-md-4">{{schedule.duration}}</div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +54,7 @@ export default {
   data() {
     return {
       tainingsList: [],
+      scheduleList: [],
       search: "",
       dateFrom: "",
       dateTo: ""
@@ -66,9 +74,14 @@ export default {
 
       me.$root.trainings().getTrainings(
         function(training) {
-          console.log("seucces!!");
-          console.log(training.rows);
           me.tainingsList = training.rows;
+          training.rows.forEach(function(element) {
+            me.$root.schedules().createSchedule({
+              training: element.id,
+              scheduled_at: "2019-01-01",
+              duration: "02:00"
+            });
+          });
         },
         function(error) {
           console.log("not training found");
@@ -78,10 +91,19 @@ export default {
 
     getSchedules(training) {
       let me = this;
-      me.$root.schedules().trainingSchedules(training, function(schedules){console.log(schedules)} );
+      me.$root
+        .schedules()
+        .trainingSchedules(training.doc.title, function(schedules) {
+         // me.scheduleList = schedules;
+        });
+        me.scheduleList.push({id: '1', scheduled_at: '2019-01-01', duration: '02:00'});
     }
   }
 };
 </script>
+
+<style>
+@import "../../assets/styles/home.css";
+</style>
 
 

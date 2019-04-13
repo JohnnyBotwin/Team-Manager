@@ -477,9 +477,7 @@ const schedules = {
 
 					me.$root.database().find({
             selector: { training : md5(training) },
-            respCallback, failCallback
-					});
-
+          },respCallback, failCallback);
 				},
 
 			};
@@ -487,7 +485,6 @@ const schedules = {
 		}
 
 	}
-
 
 };
 
