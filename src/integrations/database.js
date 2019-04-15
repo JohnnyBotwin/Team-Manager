@@ -464,7 +464,7 @@ const schedules = {
 					}
 
 					Object.assign(schedule, {
-						_id : md5(schedule.training + scehdule.scheduled_at),
+						_id : md5(schedule.training + schedule.scheduled_at),
 					});
 
 					schedule.training = md5(schedule.training);
