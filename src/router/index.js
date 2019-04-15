@@ -27,6 +27,7 @@ import UpdateProject from '@/components/backoffice/projects/Update';
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -90,8 +91,8 @@ export default new Router({
     {
       path: '/example',
       name: 'Example',
-      component: Example },
-
+      component: Example
+    },
     {
       path: '/dashboard',
       name: 'Dashboard',

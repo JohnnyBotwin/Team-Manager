@@ -68,9 +68,23 @@ export default {
           me.user.email,
 
           function(user) {
-            if(user.password == me.user.password)
-              me.$router.push({ name: "Home", params: { userId: user.name } });
-            else  me.loginError = true;
+            if (user.password == me.user.password) {
+              me.$root.userRoles().userRoles(me.user.email, 
+                (success => {
+                  if (success.docs && success.docs.length && success.docs[0].role_name === 'ADMIN') {
+                      me.$router.push({ name: "Dashboard" });
+                    } else {
+                      me.$router.push({ name: "Home", params: { userId: user.name } });
+                  }
+                }),
+                (failure => {
+                  console.log('Error getting user roles.');
+                })
+              );
+              
+            } else {
+              me.loginError = true;
+            } 
           },
 
           function(error) {
