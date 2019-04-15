@@ -5,16 +5,29 @@
         <input name="name" v-model="project.name">
         <input name="name" v-model="project.description">
         <button @click="update" class="btn btn-primary">Submit</button>
+        <br/>
+        <button @click="addTask" class="btb btn-primary">Add Task</button>
+        <div class="task-el">
+            <Task :project="project" v-if="isAddTask"/>
+        </div>
+        <div class="tasks-list"></div>
     </div>
+
 </template>
 
 <script type="text/javascript">
+    import Task from "@/components/backoffice/tasks/Create";
+
     export default {
         name: 'UpdateProject',
         data() {
             return {
-                project: {}
+                project: {},
+                isAddTask: false
             }
+        },
+        components: {
+            Task
         },
         created() {
             this.show();
@@ -43,6 +56,12 @@
                 }, function (error) {
                     console.log(error);
                 });
+            },
+            addTask() {
+                this.isAddTask = true;
+
+                //this.Task.project = this.project;
+
             }
         }
     }
