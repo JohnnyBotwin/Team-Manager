@@ -41,8 +41,7 @@ export default {
       const me = this;
       if (me.user.email == "") {
         me.emptyField = true;
-      }
-      else {
+      } else {
         me.emptyField = false;
         me.loginError = false;
         me.$root.users().getUser(
