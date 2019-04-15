@@ -546,7 +546,16 @@ const projects = {
 					me.$root.database().get(md5(name), respCallback, failCallback);
 
 				},
+                get(id, respCallback, failCallback) {
+                    me.$root.database().get(id, respCallback, failCallback);
+                },
+                update(project, respCallback, failCallback) {
+                    Object.assign(project, {
+                        _id : project._id
+                    });
 
+                    me.$root.database().update(project, respCallback, failCallback);
+                },
 				deleteProject(name, respCallback, failCallback) {
 
 					me.$root.database().delete(md5(name), respCallback, failCallback);

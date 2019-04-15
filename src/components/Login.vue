@@ -1,22 +1,3 @@
-<!-- <template>
-  <div class="app" id="login">
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3">
-        <input class="form-control" v-model="user.name" type="textfield" name="username">
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3">
-        <input class="form-control" v-model="user.password" type="password" name="password">
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3 text-right">
-        <input type="submit" @click="login()" value="login">
-      </div>
-    </div>
-  </div>
-</template>-->
 <template>
 <div class="outterForm">
   <div class="form-signin">
@@ -60,17 +41,30 @@ export default {
       const me = this;
       if (me.user.email == "") {
         me.emptyField = true;
-      }
-      else {
+      } else {
         me.emptyField = false;
         me.loginError = false;
         me.$root.users().getUser(
           me.user.email,
 
           function(user) {
-            if(user.password == me.user.password)
-              me.$router.push({ name: "Home", params: { userEmail: user.email } });
-            else  me.loginError = true;
+            if (user.password == me.user.password) {
+              me.$root.userRoles().userRoles(me.user.email,
+                (success => {
+                  if (success.docs && success.docs.length && success.docs[0].role_name === 'ADMIN') {
+                      me.$router.push({ name: "Dashboard" });
+                    } else {
+                      me.$router.push({ name: "Home", params: { userId: user.name } });
+                  }
+                }),
+                (failure => {
+                  console.log('Error getting user roles.');
+                })
+              );
+
+            } else {
+              me.loginError = true;
+            }
           },
 
           function(error) {
