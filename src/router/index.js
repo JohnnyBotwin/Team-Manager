@@ -21,12 +21,11 @@ import ListProject from '@/components/backoffice/projects/List';
 import CreateProject from '@/components/backoffice/projects/Create';
 import ShowProject from '@/components/backoffice/projects/Show';
 import UpdateProject from '@/components/backoffice/projects/Update';
+import ListTask from '@/components/backoffice/tasks/List';
 import ListTeam from '@/components/backoffice/teams/list';
 import CreateTeam from '@/components/backoffice/teams/create';
 import ShowTeam from '@/components/backoffice/teams/show';
 import UpdateTeam from '@/components/backoffice/teams/update';
-
-
 
 Vue.use(Router)
 
@@ -83,6 +82,11 @@ export default new Router({
           path: "project/update/:id",
           name: "UpdateProject",
           component: UpdateProject
+        },
+        {
+          path: "task/list",
+          name: "ListTask",
+          component: ListTask
         },
         {
           path: 'training/list',
