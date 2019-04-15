@@ -16,7 +16,7 @@
 
 		created() {
 
-			let me = this;
+			const me = this;
 			console.log("calling trainings");
 
 			me.$root.userRoles().assign('diogo.tavares@findmore.pt', 'ADMIN', function(response) {
@@ -42,7 +42,7 @@
 
 			howToRandom() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.roles().createRole({
 
@@ -66,7 +66,7 @@
 
 			howToCreateUser() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.users().createUser({
 
@@ -89,7 +89,7 @@
 
 			howToGetUser() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.users().getUser('joao@example.pt', function(user) {
 
@@ -105,7 +105,7 @@
 
 			howToGetAllUsers() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.users().getUsers(function(users) {
 
@@ -121,7 +121,7 @@
 
 			howToCreateTeam() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.teams().createTeam({
 
@@ -141,7 +141,7 @@
 
 			howToAssignUserToTeam() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.userTeams().assign('joao@example.pt', 'teste', function(response) {
 
@@ -159,7 +159,7 @@
 
 			howToUnassignUserToTeam() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.userTeams().unassign('joao@example.pt', 'teste', function(response) {
 
@@ -176,7 +176,7 @@
 
 			howToGetUserTeams() {
 
-				let me = this;
+				const me = this;
 
 				me.$root.userTeams().userTeams('joao@example.pt',  function(response) {
 
