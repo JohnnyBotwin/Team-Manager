@@ -1,34 +1,18 @@
 <template>
-	
-	<div class="app" id="dashboard">
-
-
-
-
-	</div>
-
+  <div class="app" id="dashboard">
+    Dashboard
+    <router-view></router-view>
+  </div>
 </template>
 
 <script type="text/javascript">
-
 export default {
+  name: "Dashboard",
 
-	name : 'Dashboard',
+  created() {},
 
-	created() {
-
-
-
-	},
-
-	methods : {
-
-
-
-	},
-
-}
-
+  methods: {}
+};
 </script>
 
 
