@@ -3,19 +3,19 @@
     <h1 align="center">
       <small class="text-muted">Create</small>
     </h1>
-    <div class="card  border-primary mb-3 bg-light">
+    <div class="card border-primary mb-3 bg-light">
       <div class="card-body">
         <form>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Name:</label>
-            <div class="col-sm-10">                                     <!-- JMORAIS: o v-model é uma directiva custom do VueJS. Não necessita de :  -->
-              <input type="text" class="form-control" placeholder="Role" :v-model="name">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Role" v-model="user.name">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Role" :v-model="email">
+              <input type="email" class="form-control" placeholder="Role" v-model="user.email">
             </div>
           </div>
           <div class="form-group row">
@@ -25,13 +25,18 @@
                 type="password"
                 class="form-control"
                 placeholder="Password"
-                :v-model="password"
+                v-model="user.password"
               >
             </div>
           </div>
-          <UserRole :email="null"/>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Role:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Role" v-model="user.role">
+            </div>
+          </div>
           <div align="center">
-            <button class="btn btn-info">Add</button>
+            <button @click.prevent="create()" class="btn btn-info">Add</button>
           </div>
         </form>
       </div>
@@ -48,12 +53,32 @@ export default {
     UserRole
   },
   data() {
-    return { // JMORAIS: questão de ter as propriedades dentro de um objeto que o identifique.
-      name: "",
-      email: "",
-      password: "",
-      role: ""
+    return {
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        role: ""
+      }
     };
+  },
+  methods: {
+    create() {
+      let me = this;
+
+      console.log(me.user);
+
+      me.$root.users().createUser(
+        this.user,
+        function(response) {
+          console.log(response);
+          me.$emit("created", true);
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+    }
   }
 };
 </script>

@@ -1,12 +1,10 @@
 <template>
   <div class="content">
-    <Create/>
+    <Create @created="getUsers"/>
     <h1>
       <small class="text-muted">Manage Users</small>
     </h1>
-    <!-- user list should be able to delete -->
     <div v-if="loading" class="alert alert-primary" role="alert">Loading...</div>
-
     <template v-if="users !== null">
       <ul v-for="user in users" :key="user.id">
         <div class="card bg-light mb-3">
@@ -18,7 +16,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Role"
+                    placeholder="Name"
                     :v-model="user.doc.name"
                     :value="user.doc.name"
                   >
@@ -30,7 +28,7 @@
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="Role"
+                    placeholder="Email"
                     :v-model="user.doc.email"
                     :value="user.doc.email"
                   >
@@ -50,8 +48,8 @@
               </div>
               <UserRole :email="user.doc.email"/>
               <div align="center">
-                <button class="btn btn-info">Edit</button>
-                <button class="btn btn-outline-danger">Delete</button>
+                <button @click.prevent="edit(user.id)" class="btn btn-info">Edit</button>
+                <button @click.prevent="del(user.id)" class="btn btn-outline-danger">Delete</button>
               </div>
             </li>
           </div>
@@ -96,7 +94,13 @@ export default {
           alert(error);
         }
       );
-    }
+    },
+    edit(id) {
+      console.log(id);
+    },
+    del(id) {
+      console.log(id);
+    },
   }
 };
 </script>

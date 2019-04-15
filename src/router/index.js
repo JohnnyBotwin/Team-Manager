@@ -22,11 +22,22 @@ import CreateProject from '@/components/backoffice/projects/Create';
 import ShowProject from '@/components/backoffice/projects/Show';
 import UpdateProject from '@/components/backoffice/projects/Update';
 import ListTask from '@/components/backoffice/tasks/List';
+import ListTeam from '@/components/backoffice/teams/list';
+import CreateTeam from '@/components/backoffice/teams/create';
+import ShowTeam from '@/components/backoffice/teams/show';
+import UpdateTeam from '@/components/backoffice/teams/update';
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
+  {
+      path: '/example',
+      name: 'Example',
+      component: Example
+    },
+
     {
       path: '/',
       name: 'Login',
@@ -84,7 +95,27 @@ export default new Router({
         {
           path: 'training/create',
           component: BOCreateTraining
-        }
+        },
+        {
+          path: "team/list",
+          name: "ListTeam",
+          component: ListTeam
+        },
+        {
+          path: "team/create",
+          name: "CreateTeam",
+          component: CreateTeam
+        },
+        {
+          path: "team/show/:id",
+          name: "ShowTeam",
+          component: ShowTeam
+        },
+        {
+          path: "team/update/:id",
+          name: "UpdateTeam",
+          component: UpdateTeam
+        },
       ]
     },
     { 

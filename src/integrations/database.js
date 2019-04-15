@@ -226,7 +226,7 @@ const users = {
 					}
 
 					Object.assign(user, {
-						_id : user.email,
+						_id : md5(user.email),
 					});
 
 					me.$root.database().create(user, respCallback, failCallback);
@@ -716,7 +716,8 @@ const userRoles = {
 					let relation = {
 						_id : md5(email + roleName),
 						user: email,
-						role: md5(roleName)
+						role: md5(roleName),
+						role_name: roleName,
 					};
 
 					me.$root.database().create(relation, respCallback, failCallback);
