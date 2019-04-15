@@ -60,8 +60,6 @@
             },
             deleteProject(project) {
                 let me = this;
-                // JMORAIS: O Vue continua com a entrada deste projeto no array, se por acaso a propriedade projects sofre uma alteração, o projeto vai voltar a aparecer na listagem. Neste caso, a solução passa por remover este projeto do array de projetos. podes fazer o seguinte:
-                //
 
                 var el = document.querySelectorAll("[data-project-id='" + project.id + "']");
 
