@@ -3,7 +3,7 @@
  		<datepicker format="dd/MM/yyyy"></datepicker>
 		<p>Search by title:</p>
     <input type="text" name="text" class="form-control" v-model="searchTitleText" @input="onSearchTitleTextChange(searchTitleText)" style="width:400px;">
-		<table class="table">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -12,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(taining, index) in filteredTrainingsList" :key="index">
+				<tr class="training-item" v-for="(taining, index) in filteredTrainingsList" :key="index">
 					<th scope="row">{{ index }}</th>
 					<td>{{ taining.doc.title}}</td>
 					<td>{{ taining.doc.description }}</td>
