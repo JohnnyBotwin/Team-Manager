@@ -23,6 +23,7 @@ import ShowProject from '@/components/backoffice/projects/Show';
 import UpdateProject from '@/components/backoffice/projects/Update';
 
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -82,6 +83,15 @@ export default new Router({
         }
       ]
     },
+    { 
+      path: '/example',
+      name: 'Example',
+      component: Example },
 
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
   ]
 })
