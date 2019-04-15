@@ -47,7 +47,6 @@ export default new Router({
           name: "CreateUser",
           component: CreateUser
         },
-
         {
           path: "users/list",
           name: "ListUsers",
@@ -86,12 +85,23 @@ export default new Router({
     { 
       path: '/example',
       name: 'Example',
+      component: Example
+    },
+    {
+      path: '/example',
+      name: 'Example',
       component: Example },
 
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard },
     {
       path: '/home',
       name: 'Home',
       component: Home
-    },
+    }
   ]
 })
+
+

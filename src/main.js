@@ -85,5 +85,5 @@ new Vue({
 	userRoles,
 	projectRoles,
 	teamTraining,
-  ]
+  ],
 });
