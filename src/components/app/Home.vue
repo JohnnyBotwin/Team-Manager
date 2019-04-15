@@ -7,7 +7,6 @@
       name="text"
       class="form-control"
       v-model="searchTitleText"
-      @input="onSearchTitleTextChange(searchTitleText)"
       style="width:400px;"
     >
     <div class="form-group">
@@ -116,10 +115,6 @@ export default {
   },
 
   methods: {
-    onSearchTitleTextChange(searchTitleText) {
-      console.log(searchTitleText);
-    },
-
     customFormatter(date) {
       return moment(date).format("DD/MM/YYYY");
     },
