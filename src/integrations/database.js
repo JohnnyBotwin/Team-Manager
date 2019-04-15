@@ -396,6 +396,24 @@ const trainings = {
 
 				},
 
+
+				updateTraining(training, respCallback, failCallback) {
+
+					if(typeof training.title === 'undefined') {
+
+						return failCallback('Error - Invalid title address!');
+
+					}
+
+					Object.assign(training, {
+						_id : md5(training.title),
+					});
+
+					me.$root.database().update(training, respCallback, failCallback);
+
+				},
+
+
 				getTrainings(respCallback, failCallback) {
 
 					me.$root.database().getAll(respCallback, failCallback);
