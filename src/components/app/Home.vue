@@ -1,8 +1,7 @@
 <template>
-
 	<div class="app" id="home">
  		<datepicker format="dd/MM/yyyy"></datepicker>
-		Search by title:<input class="form-control" v-model="search" type="text" name="text" style="width:400px;">
+		Search by title:<input class="form-control" v-model="searchTitleText" type="text" name="text" style="width:400px;">
 		<table class="table">
 			<thead>
 				<tr>
@@ -12,17 +11,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(taining , index) in tainingsList" v-if="taining.doc.title.includes(search)">
+				<tr v-for="(taining, index) in tainingsList" :key="index" v-if="taining.doc.title.includes(searchTitleText)">
 					<th scope="row">{{ index }}</th>
 					<td>{{ taining.doc.title}}</td>
 					<td>{{ taining.doc.description }}</td>
 				</tr>
 			</tbody>
 		</table>
-
-	
 	</div>
-
 </template>
 
 <script type="text/javascript">
@@ -30,15 +26,15 @@ import Datepicker from "vuejs-datepicker";
 import moment from "moment";
 
 export default {
+  name: "Home",
   components: {
     Datepicker
   },
-  name: "Home",
   data() {
     return {
       tainingsList: [],
       scheduleList: [],
-      search: "",
+      searchTitleText: "",
       dateFrom: "",
       dateTo: ""
     };
@@ -53,10 +49,10 @@ export default {
     },
 
     listTrainings() {
-      let me = this;
+      const me = this;
 
       me.$root.trainings().getTrainings(
-        function(training) {
+        (training => {
           me.tainingsList = training.rows;
           training.rows.forEach(function(element) {
             me.$root.schedules().createSchedule({
@@ -65,15 +61,16 @@ export default {
               duration: "02:00"
             });
           });
-        },
-        function(error) {
-          console.log("not training found");
-        }
+        }),
+        (error => {
+          console.log("No trainings found.");
+        })
       );
     },
 
     getSchedules(training) {
-      let me = this;
+      const me = this;
+
       me.$root
         .schedules()
         .trainingSchedules(training.doc.title, function(schedules) {
@@ -86,7 +83,7 @@ export default {
 </script>
 
 <style>
-@import "../../assets/styles/home.css";
+  @import "../../assets/styles/home.css";
 </style>
 
 
