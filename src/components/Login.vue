@@ -1,22 +1,3 @@
-<!-- <template>
-  <div class="app" id="login">
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3">
-        <input class="form-control" v-model="user.name" type="textfield" name="username">
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3">
-        <input class="form-control" v-model="user.password" type="password" name="password">
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-md-4 offset-md-3 text-right">
-        <input type="submit" @click="login()" value="login">
-      </div>
-    </div>
-  </div>
-</template>-->
 <template>
 <div class="outterForm">
   <div class="form-signin">
