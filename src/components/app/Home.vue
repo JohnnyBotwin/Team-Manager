@@ -1,7 +1,8 @@
 <template>
 	<div class="app" id="home">
  		<datepicker format="dd/MM/yyyy"></datepicker>
-		Search by title:<input class="form-control" v-model="searchTitleText" type="text" name="text" style="width:400px;">
+		<p>Search by title:</p>
+    <input type="text" name="text" class="form-control" v-model="searchTitleText" @input="onSearchTitleTextChange(searchTitleText)" style="width:400px;">
 		<table class="table">
 			<thead>
 				<tr>
@@ -11,7 +12,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(taining, index) in tainingsList" :key="index" v-if="taining.doc.title.includes(searchTitleText)">
+				<tr v-for="(taining, index) in filteredTrainingsList" :key="index">
 					<th scope="row">{{ index }}</th>
 					<td>{{ taining.doc.title}}</td>
 					<td>{{ taining.doc.description }}</td>
@@ -39,11 +40,26 @@ export default {
       dateTo: ""
     };
   },
+  computed: {
+    filteredTrainingsList() {
+      const search = this.searchTitleText.toLowerCase().trim();
+
+      if (!search) {
+        return this.tainingsList;
+      }
+
+      return this.tainingsList.filter(l => l.doc.title.toLowerCase().indexOf(search) > -1);
+    }
+  },
   created() {
     this.listTrainings();
   },
 
   methods: {
+    onSearchTitleTextChange(searchTitleText) {
+      console.log(searchTitleText);
+    },
+
     customFormatter(date) {
       return moment(date).format("DD/MM/YYYY");
     },
