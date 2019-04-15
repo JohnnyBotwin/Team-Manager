@@ -718,7 +718,8 @@ const userRoles = {
 					let relation = {
 						_id : md5(email + roleName),
 						user: email,
-						role: md5(roleName)
+						role: md5(roleName),
+						role_name: roleName,
 					};
 
 					me.$root.database().create(relation, respCallback, failCallback);

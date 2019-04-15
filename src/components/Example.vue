@@ -18,16 +18,18 @@
 
 			let me = this;
 			console.log("calling trainings");
+
+			me.$root.userRoles().assign('diogo.tavares@findmore.pt', 'ADMIN', function(response) {
+
+				console.log(response);
+
+			}, function(error) {
+
+				console.log(error);
+
+			});
+	
 				
-				me.$root.trainings().getTrainings(function(response) {
-
-					console.log(response);
-
-				}, function(error) {
-
-					console.log(error);
-
-				});
 
 
 
