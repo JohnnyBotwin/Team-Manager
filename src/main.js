@@ -1,10 +1,10 @@
 /**
  * Welcome to Leveling up on VueJS,
  * Author(s): João Morais
- * Trainees: { Team _ : [ ___, ___, ___ ], 
- 			   Team _ : [ ___, ___, ___ ], 
+ * Trainees: { Team _ : [ ___, ___, ___ ],
+ 			   Team _ : [ ___, ___, ___ ],
  			 }
- * 
+ *
  * Team Objectives:
  * Team _: Develop user application.
  * Team _: Develop backoffice.
@@ -13,13 +13,13 @@
  * You'll also need to know that a first
  * level integration with PouchDB is already developed!
  * Read the integrations/database.js and get acquainted
- * with all the available methods. You can also read the 
- * components/Example.vue to see how to access the 
+ * with all the available methods. You can also read the
+ * components/Example.vue to see how to access the
  * public database.
- * 
- * Any question or any advice that you require, 
+ *
+ * Any question or any advice that you require,
  * feel free to ask. Don't get stucked.
- * 
+ *
  * Date: 8th, 9th, 11th and 15th of Abril, 2019.
  * Time: 19h - 21h
  */
@@ -56,7 +56,8 @@ import {
 	tasks,
 	userRoles,
 	projectRoles,
-	teamTraining
+  teamTraining,
+  trainingTeams,
 } from './integrations/database';
 
 // Example Mixin:
@@ -84,6 +85,7 @@ new Vue({
 	tasks,
 	userRoles,
 	projectRoles,
-	teamTraining,
+  teamTraining,
+  trainingTeams,
   ],
 });
