@@ -27,6 +27,7 @@ import ShowTeam from '@/components/backoffice/teams/show';
 import UpdateTeam from '@/components/backoffice/teams/update';
 
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -106,6 +107,15 @@ export default new Router({
         },
       ]
     },
+    { 
+      path: '/example',
+      name: 'Example',
+      component: Example },
 
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
   ]
 })
