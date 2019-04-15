@@ -19,15 +19,24 @@
 			const me = this;
 			console.log("calling trainings");
 				
-				me.$root.trainings().getTrainings(function(response) {
+			/*me.$root.trainings().getTrainings(function(response) {
 
-					console.log(response);
+				console.log(response);
 
-				}, function(error) {
+			}, function(error) {
 
-					console.log(error);
+				console.log(error);
 
-				});
+			});*/
+
+			me.$root.schedules.createSchedule({
+				training: 'teste-training',
+				scheduled_at : 'hello-world',
+			}, function(response) {
+				console.log(response);
+			}, function(error) {
+				console.log(error);
+			});
 
 
 

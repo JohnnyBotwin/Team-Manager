@@ -1,6 +1,6 @@
 <template>
   <div id="backoffice">
-    
+
     <router-view/>
     
   </div>

@@ -24,9 +24,11 @@ export default new Router({
 
     { path : '/example', name: 'Example', component: Example },
 
-    { path : '/home', name: 'Home', component: Home },
+    { path : '/home/:user_id', name: 'Home', component: Home },
 
     { path : '/dashboard', name: 'Dashboard', component: Dashboard }
 
   ]
 })
+
+
