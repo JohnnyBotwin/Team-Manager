@@ -15,8 +15,6 @@ import Dashboard from '@/components/backoffice/Dashboard';
 
 
 
-
-
 Vue.use(Router)
 
 export default new Router({
@@ -26,7 +24,9 @@ export default new Router({
 
     { path : '/example', name: 'Example', component: Example },
 
-    { path : '/home', name: 'Home', component: Home }
+    { path : '/home', name: 'Home', component: Home },
+
+    { path : '/dashboard', name: 'Dashboard', component: Dashboard }
 
   ]
 })
