@@ -1,5 +1,5 @@
 <template>
-  <div class="create-teams">
+  <div id="create-teams">
     <h2 class="title">Create new team</h2>
     <label for="team-title">Name</label>
     <input type="text" name="team-title" id="team-title" v-model="team.name">
