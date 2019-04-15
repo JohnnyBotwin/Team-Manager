@@ -836,6 +836,32 @@ const teamTraining = {
 
 };
 
+const trainingTeams = {
+
+	methods: {
+
+		trainingTeams() {
+
+			const me = this;
+
+			me.$root.db('team_training').connect();
+
+			return {
+
+				trainingTeam(training, respCallback, failCallback) {
+
+					me.$root.database().find({
+						selector: { training : md5(training) },
+					}, respCallback, failCallback);
+				},
+			};
+
+		}
+
+	}
+
+};
+
 
 
 
@@ -851,5 +877,6 @@ export {
 	tasks,
 	userRoles,
 	projectRoles,
-	teamTraining,
+  teamTraining,
+  trainingTeams,
 }

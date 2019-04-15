@@ -1,3 +1,15 @@
-.training-item{
+.training-item {
   cursor: pointer;
+  height: 36px;
 }
+
+.training-item:hover {
+  background-color: #eee;
+}
+
+.training-header {
+  background-color: #eee;
+  height: 36px;
+}
+
+

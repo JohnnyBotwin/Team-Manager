@@ -69,7 +69,7 @@ export default {
 
           function(user) {
             if(user.password == me.user.password)
-              me.$router.push({ name: "Home", params: { userId: user.name } });
+              me.$router.push({ name: "Home", params: { userEmail: user.email } });
             else  me.loginError = true;
           },
 
