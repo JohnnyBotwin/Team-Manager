@@ -2,7 +2,6 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Role:</label>
     <div class="col-sm-10">
-      <!-- pass in change with role value inside chae model -->
       <input type="text" class="form-control" placeholder="Role" v-model="role">
     </div>
   </div>
@@ -12,14 +11,14 @@
 export default {
   name: "UserRole",
   props: {
-    email: null,
-    role: null
+    email: null
   },
   data() {
     return {
       loading: true,
       roles: [],
-      error: ""
+      error: "",
+      role: null
     };
   },
   mounted() {
@@ -43,9 +42,6 @@ export default {
             console.log(error);
           }
         );
-    },
-    value() {
-      this.$emit("getValue", this.role);
     }
   }
 };

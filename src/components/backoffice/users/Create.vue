@@ -9,22 +9,32 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Name:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="Role" v-model="name">
+              <input type="text" class="form-control" placeholder="Role" v-model="user.name">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Role" v-model="email">
+              <input type="email" class="form-control" placeholder="Role" v-model="user.email">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" placeholder="Password" v-model="password">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                v-model="user.password"
+              >
             </div>
           </div>
-          <UserRole :email="null" @getValue="setRole"/>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Role:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Role" v-model="user.role">
+            </div>
+          </div>
           <div align="center">
             <button @click.prevent="create()" class="btn btn-info">Add</button>
           </div>
@@ -44,37 +54,30 @@ export default {
   },
   data() {
     return {
-      name: "",
-      email: "",
-      password: "",
-      role: ""
+      user: {
+        name: "",
+        email: "",
+        password: "",
+        role: ""
+      }
     };
   },
   methods: {
     create() {
       let me = this;
 
-      const user = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        role: this.role
-      };
-
-      console.log(user);
+      console.log(me.user);
 
       me.$root.users().createUser(
-        user,
+        this.user,
         function(response) {
           console.log(response);
+          me.$emit("created", true);
         },
         function(error) {
           console.log(error);
         }
       );
-    },
-    setRole(role) {
-      this.role = role;
     }
   }
 };

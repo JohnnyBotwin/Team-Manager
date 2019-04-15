@@ -24,6 +24,9 @@
       </tbody>
     </table>
     <updateTraining @updated="updated" v-if="trainingToUpdate" v-bind:trainingToUpdate="trainingToUpdate"></updateTraining>
+
+    <!-- ** --> <router-link to="/backoffice/training/create">Create new Training</router-link>
+    
     <a href="#" @click.prevent.stop="createTraining">Create New Training</a>
   </div>
 </template>

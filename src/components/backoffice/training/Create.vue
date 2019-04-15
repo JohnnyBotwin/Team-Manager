@@ -29,7 +29,11 @@ export default {
     this.training = this.trainingToUpdate || {};
     this.createOrUpdateLabel = this.trainingToUpdate ? "Update" : "Create";
   },
-
+  watch:{
+    trainingToUpdate: function (newValue, oldValue) {
+      this.training = newValue;
+    }
+  },
   methods: {
     createOrUpdateTraining() {
       let me = this;

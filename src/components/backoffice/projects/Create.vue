@@ -32,7 +32,6 @@
         name: 'CreateProject',
         data() {
             return {
-                // JMORAIS: at some point youll need to start adding more variables in your data... so, youll need to start wrapping your properties into objects. example: return { user : { id: null, name: '', ... }, loaders: { checkingUsername: false, }, ... }
                 project: {
                     id: null,
                     name: '',

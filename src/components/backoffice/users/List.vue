@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <Create/>
+    <Create @created="getUsers"/>
     <h1>
       <small class="text-muted">Manage Users</small>
     </h1>
