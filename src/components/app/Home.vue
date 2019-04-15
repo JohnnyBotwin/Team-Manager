@@ -1,45 +1,28 @@
 <template>
-  <div class="app container" id="home">
-    <div class="row form-group">
-      <div class="col-md-3">
-        <datepicker v-model="dateFrom" @closed="showDate()" :format="customFormatter"></datepicker>
-      </div>
-      <div class="col-md-3">
-        <datepicker v-model="dateTo" @closed="showDate()" :format="customFormatter"></datepicker>
-      </div>
-    </div>
-    <div class="row col-md-4 form-group">Search by title:</div>
-    <div class="row col-md-4 form-group">
-      <input class="form-control" v-model="search" type="text" name="text" style="width:400px;">
-    </div>
-    <table class="table table-hover">
-      <thead class="thead-light">
-        <tr>
-          <th>#</th>
-          <th>Title</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          class="training-item"
-          v-for="(training , index) in tainingsList"
-          v-if="training.doc.title.toLowerCase().includes(search.toLowerCase())"
-          @click="getSchedules(training)"
-        >
-          <th scope="row">{{ index + 1 }}</th>
-          <td>{{ training.doc.title}}</td>
-          <td>{{ training.doc.description }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="row col-md-12">Schedules</div>
-    <div class="row col-md-12" v-for="(schedule, index) in scheduleList">
-      <div class="col-md-4">{{schedule.id}}</div>
-      <div class="col-md-4">{{schedule.scheduled_at}}</div>
-      <div class="col-md-4">{{schedule.duration}}</div>
-    </div>
-  </div>
+
+	<div class="app" id="home">
+ 		<datepicker format="dd/MM/yyyy"></datepicker>
+		Search by title:<input class="form-control" v-model="search" type="text" name="text" style="width:400px;">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Title</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(taining , index) in tainingsList" v-if="taining.doc.title.includes(search)">
+					<th scope="row">{{ index }}</th>
+					<td>{{ taining.doc.title}}</td>
+					<td>{{ taining.doc.description }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	
+	</div>
+
 </template>
 
 <script type="text/javascript">
