@@ -4,18 +4,30 @@
 
         <input name="name" v-model="project.name">
         <input name="name" v-model="project.description">
-                        <!-- JMORAIS: é redudante passar o project neste método, uma vez que o project está na nossa propriedade data. -->
-        <button @click="update(project)" class="btn btn-primary">Submit</button>
+        <button @click="update" class="btn btn-primary">Submit</button>
+        <br/>
+        <button @click="addTask" class="btb btn-primary">Add Task</button>
+        <div class="task-el">
+            <Task :project="project" v-if="isAddTask"/>
+        </div>
+        <div class="tasks-list"></div>
     </div>
+
 </template>
 
 <script type="text/javascript">
+    import Task from "@/components/backoffice/tasks/Create";
+
     export default {
         name: 'UpdateProject',
         data() {
             return {
-                project: {}
+                project: {},
+                isAddTask: false
             }
+        },
+        components: {
+            Task
         },
         created() {
             this.show();
@@ -34,8 +46,8 @@
                     console.log(error);
                 });
             },
-            update(project) {
-                console.log(project);
+            update() {
+                console.log(this.project);
 
                 let me = this;
 
@@ -44,6 +56,12 @@
                 }, function (error) {
                     console.log(error);
                 });
+            },
+            addTask() {
+                this.isAddTask = true;
+
+                //this.Task.project = this.project;
+
             }
         }
     }
