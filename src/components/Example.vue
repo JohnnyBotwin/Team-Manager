@@ -38,6 +38,18 @@
 				console.log(error);
 			});
 
+			me.$root.userRoles().assign('diogo.tavares@findmore.pt', 'ADMIN', function(response) {
+
+				console.log(response);
+
+			}, function(error) {
+
+				console.log(error);
+
+			});
+	
+				
+
 
 
 			// this.howToGetUser();

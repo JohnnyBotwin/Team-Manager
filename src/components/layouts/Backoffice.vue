@@ -28,7 +28,13 @@
             <router-link class="nav-link" to="/backoffice/users/list">Users</router-link>
           </li>
           <li class="nav-item">
+            <router-link  class="nav-link" to="/backoffice/project/create">Create Project</router-link>
+          </li>
+          <li class="nav-item">
             <router-link  class="nav-link" to="/backoffice/project/list">List Projects</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  class="nav-link" to="/backoffice/team/list">List Teams</router-link>
           </li>
         </ul>
       </div>

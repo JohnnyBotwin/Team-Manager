@@ -2,7 +2,7 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Role:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Role" :v-model="role" :value="role">
+      <input type="text" class="form-control" placeholder="Role" v-model="role">
     </div>
   </div>
 </template>
@@ -15,10 +15,10 @@ export default {
   },
   data() {
     return {
-      role: null,
       loading: true,
       roles: [],
-      error: ""
+      error: "",
+      role: null
     };
   },
   mounted() {
